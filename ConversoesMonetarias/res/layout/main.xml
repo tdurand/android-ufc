@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <TextView android:text="@string/amount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/textView1"></TextView>
+<EditText
+        android:id="@+id/amount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:inputType="numberDecimal"/>
+<RadioGroup
+    android:id="@+id/conversionType"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RadioButton android:id="@+id/euroReal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/euroreal" android:checked="true"></RadioButton>
+    <RadioButton android:id="@+id/realEuro" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/realeuro"></RadioButton>
+</RadioGroup>
+<Button android:layout_width="wrap_content" android:text="@string/btnconvert" android:layout_height="wrap_content" android:id="@+id/btnConvert" android:onClick="convert"></Button>
+<TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:id="@+id/result"></TextView>
+</LinearLayout>

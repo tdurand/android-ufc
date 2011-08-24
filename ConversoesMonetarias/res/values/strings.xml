@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, ConversoesMonetariasActivity!</string>
+    <string name="app_name">ConversoesMonetarias</string>
+    <string name="euroreal">Euro -> Real</string>
+    <string name="realeuro">Real -> Euro</string>
+    <string name="btnconvert">Converter</string>
+    <string name="amount">Quantidade</string>
+    <string name="result">Resultado</string>
+    <string name="resultado"></string>
+</resources>
