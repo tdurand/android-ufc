@@ -1,5 +1,9 @@
 package ufc.learning.ListaContatos;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +17,10 @@ public class ListaContatosActivity extends Activity {
     private Button btnAddContact;
     private ListView contactList;
     private EditText newContact;
-    private String dataContactList[]={"Pedro","Hannes","Bianca","Italo"};
+    private String initDataContactList[]={"Pedro","Hannes","Momo","Italo","Charles","Laurent","Daniel"};
+    private List<String> dataContactList=Arrays.asList(initDataContactList);
+    
+    private ArrayAdapter<String> arrayAdapter;
     
     /** Called when the activity is first created. */
     @Override
@@ -25,12 +32,17 @@ public class ListaContatosActivity extends Activity {
         this.contactList=(ListView) this.findViewById(R.id.contactList);
         this.newContact=(EditText) this.findViewById(R.id.newContact);
         
-        contactList.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1 , dataContactList));
+        this.arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1 , dataContactList);
+        
+        this.contactList.setAdapter(arrayAdapter);
     }
     
     public void addContact(View v) {
         if(this.newContact.getTextSize()>0) {
-            //TODO implement adding of contact
+            //if not empty, add a new contact
+            this.dataContactList.add(this.newContact.getText().toString());
+            //contactList.addView(newContact);
+            this.arrayAdapter.notifyDataSetChanged();
         }
     }
 }
