@@ -25,7 +25,7 @@
 			android:text="Mail  " android:textSize="13sp"></TextView>
 		<TextView android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:text="Mail"
-			android:id="@+id/tvMail" android:textSize="13sp" android:layout_weight="1"></TextView><Button android:layout_width="wrap_content" android:id="@+id/btnRemove" android:text="Remove" android:layout_height="40dip"></Button>
+			android:id="@+id/tvMail" android:textSize="13sp" android:layout_weight="1"></TextView><Button android:layout_width="wrap_content" android:id="@+id/btnRemove" android:text="Remove" android:layout_height="40dip" android:onClick="removeContact"></Button>
 	</LinearLayout>	
 
 </LinearLayout>

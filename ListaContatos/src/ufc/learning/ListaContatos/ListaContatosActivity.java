@@ -48,10 +48,13 @@ public class ListaContatosActivity extends Activity {
         if(!this.newContact.getText().toString().equals("")) {
             this.listOfContacts.add(new Contact(this.newContact.getText().toString(),"8888999","test@gmail.com"));
             this.adapter.notifyDataSetChanged();
+            this.newContact.setText("");
         }
     }
     
     public void removeContact(View v) {
-        
+        Contact entry = (Contact) v.getTag();
+        listOfContacts.remove(entry);
+        this.adapter.notifyDataSetChanged();
     }
 }

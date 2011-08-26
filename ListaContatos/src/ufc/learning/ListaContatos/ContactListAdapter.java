@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
-public class ContactListAdapter extends BaseAdapter implements OnClickListener  {
+public class ContactListAdapter extends BaseAdapter  {
     
     private Context context;
     private List<Contact> contacts;
@@ -57,18 +57,9 @@ public class ContactListAdapter extends BaseAdapter implements OnClickListener  
         Button btnRemove = (Button) convertView.findViewById(R.id.btnRemove);
         btnRemove.setFocusableInTouchMode(false);
         btnRemove.setFocusable(false);
-        btnRemove.setOnClickListener(this);
         btnRemove.setTag(entry);
         
         return convertView;
-    }
-
-    @Override
-    public void onClick(View v) {
-        Contact entry = (Contact) v.getTag();
-        contacts.remove(entry);
-        notifyDataSetChanged();
-        
     }
 
 }
