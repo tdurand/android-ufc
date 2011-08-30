@@ -40,16 +40,27 @@ public class ExBasicoBDActivity extends Activity {
         this.testarConsultaPeloID(2); 
         this.testarConsultaPeloID(1); 
         this.testarConsultaPeloID(3); 
-        this.testarObterNomesBDAssociados(this);
+        this.testarConsultaPelaPlaca("HUJ7654");
+        this.testarConsultaPeloTipo("MOTO");
         this.testarAtualizacaoPeloID(3, "NJM1234", "MOTO"); 
         this.testarAtualizacaoPeloID(2, "KLJ8765", "CARRO"); 
         this.testarAtualizacaoPeloID(1, "HUJ7654", "CARRO"); 
+        this.testarAtualizacaoPelaPlaca("KLJ8765", "Test", "MOTO");
         this.testarConsultaTodos();
+        this.testarExclusaoPelaPlaca("NJM1234");
+        this.testarExclusaoPeloTipo("CARRO");
         this.testarExclusaoPorID(2); 
         this.testarExclusaoPorID(1); 
         this.testarExclusaoPorID(3); 
-        this.testarConsultaTodos(); 
+        this.testarConsultaTodos();
         this.testarFechamentoBD();
+        
+        //Listing database
+        this.testarObterNomesBDAssociados(this);
+        //Try to delete one
+        this.testarExcluirBDAssociado(this,"bd_exbasicopersistenciabd");
+        //Listing database
+        this.testarObterNomesBDAssociados(this);
     } 
     private void testarExclusaoTodos() {
         Log.v(TAG_CLASSE, "Excluiu tabela do BD? " + this.objVeiculoDAO.excluirTodosVeiculos()); 
@@ -143,7 +154,65 @@ public class ExBasicoBDActivity extends Activity {
     private void testarObterNomesBDAssociados(Context objContexto) {
         String[] nomesAssociados=this.objVeiculoDAO.obterNomesBDAssociados(objContexto);
         for (int i = 0; i < nomesAssociados.length; i++) {
-            Log.v(TAG_CLASSE, "BDAssociado :" + nomesAssociados[i]);
+            Log.v(TAG_CLASSE, "List of databases associated :" + nomesAssociados[i]);
+        }
+    }
+    
+    private void testarExcluirBDAssociado(Context objContexto, String nomeBD) {
+       Log.v(TAG_CLASSE, "Try to delete database: " +nomeBD+ " return:" + this.objVeiculoDAO.excluirBDAssociado(objContexto, nomeBD));
+    }
+    
+    private void testarExclusaoPelaPlaca(String placa) {
+        int result=this.objVeiculoDAO.excluirVeiculoPelaPlaca(placa);
+        if(result > 0){
+            Log.v(TAG_CLASSE, "Excluiu "+result+" veiculo(s) com placa="+placa +" do BD!");
+        } 
+        else { 
+            Log.e(TAG_CLASSE, "Nao excluiu veiculo com placa = " + placa + " do BD!");
+        }
+    }
+    
+    private void testarExclusaoPeloTipo(String tipo) {
+        int result=this.objVeiculoDAO.excluirVeiculoPeloTipo(tipo);
+        if(result > 0){
+            Log.v(TAG_CLASSE, "Excluiu "+result+" veiculo(s) com tipo="+tipo +" do BD!");
+        } 
+        else { 
+            Log.e(TAG_CLASSE, "Nao excluiu veiculo com tipo = " + tipo + " do BD!");
+        }
+    }
+    
+    private void testarConsultaPelaPlaca(String placa) {
+        StringBuilder objStringBuilder = new StringBuilder(); 
+        Cursor objCursorResultado = this.objVeiculoDAO.consultarVeiculoPelaPlaca(placa); 
+        objStringBuilder.append("Quant. de veíc. cadast. consultados pela placa no BD = " + objCursorResultado.getCount()); 
+        objCursorResultado.moveToFirst(); 
+        for (int i = 0; i < objCursorResultado.getCount(); i++) {
+            objStringBuilder.append("\n" + objCursorResultado.getLong(0) + " | " + objCursorResultado.getString(1) + " | " +objCursorResultado.getString(2)); 
+            objCursorResultado.moveToNext();
+        }
+        this.tvInfos.setText(objStringBuilder);
+    }
+    
+    private void testarConsultaPeloTipo(String tipo) {
+        StringBuilder objStringBuilder = new StringBuilder(); 
+        Cursor objCursorResultado = this.objVeiculoDAO.consultarVeiculoPeloTipo(tipo); 
+        objStringBuilder.append("Quant. de veíc. cadast. consultados pelo tipo no BD = " + objCursorResultado.getCount()); 
+        objCursorResultado.moveToFirst(); 
+        for (int i = 0; i < objCursorResultado.getCount(); i++) {
+            objStringBuilder.append("\n" + objCursorResultado.getLong(0) + " | " + objCursorResultado.getString(1) + " | " +objCursorResultado.getString(2)); 
+            objCursorResultado.moveToNext();
+        }
+        this.tvInfos.setText(objStringBuilder);
+    }
+    
+    private void testarAtualizacaoPelaPlaca(String placa,String newPlaca, String tipo) {
+        int result=this.objVeiculoDAO.atualizarVeiculoPelaPlaca(placa,newPlaca, tipo);
+        if(result > 0){
+            Log.v(TAG_CLASSE, "Atualizou "+ result+" veiculo(s) com placa = " + placa + " no BD!");
+        }
+        else {
+            Log.e(TAG_CLASSE, "Não atualizou veiculo com placa = " + placa + " no BD!");
         }
     }
 }

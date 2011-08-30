@@ -143,4 +143,52 @@ public class VeiculoDAO {
     public boolean excluirBDAssociado(Context objContext, String nomeBD) {
         return objContext.deleteDatabase(nomeBD);
     }
+    
+    public int excluirVeiculoPelaPlaca(String placa) {
+        String clausulaWHERE = CAMPO_PLACA + "='" + placa+ "'"; 
+        return (this.objSQLiteDatabase.delete(NOME_TABELA, clausulaWHERE, null));
+    }
+    
+    public int excluirVeiculoPeloTipo(String tipo) {
+        String clausulaWHERE = CAMPO_TIPO + "='" + tipo+ "'"; 
+        return (this.objSQLiteDatabase.delete(NOME_TABELA, clausulaWHERE, null));
+    }
+    
+    public Cursor consultarVeiculoPeloTipo(String tipo) {
+        Cursor objCursorResultado = null; 
+        String clausulaWHERE = CAMPO_TIPO + "='" + tipo+ "'"; 
+        String[] colunasConsulta = new String[] { "_id", "placa", "tipo" }; 
+        this.TAG_METODO = "_consultarVeiculoPeloTipo()"; 
+        try {
+            objCursorResultado = this.objSQLiteDatabase.query(NOME_TABELA, colunasConsulta, clausulaWHERE, null, null, null, null); 
+            Log.v(TAG_CLASSE+TAG_METODO, "Quant. de dados consultados pelo Tipo no BD: " + objCursorResultado.getCount());
+        } 
+        catch (Exception e) { 
+            Log.e(TAG_CLASSE+TAG_METODO, "Erro ao executar consulta pelo Tipo no BD: " + e.getMessage());
+        }
+        return objCursorResultado;
+    }
+    
+    public Cursor consultarVeiculoPelaPlaca(String placa) {
+        Cursor objCursorResultado = null; 
+        String clausulaWHERE = CAMPO_PLACA + "='" + placa+ "'"; 
+        String[] colunasConsulta = new String[] { "_id", "placa", "tipo" }; 
+        this.TAG_METODO = "_consultarVeiculoPeloPlaca()"; 
+        try {
+            objCursorResultado = this.objSQLiteDatabase.query(NOME_TABELA, colunasConsulta, clausulaWHERE, null, null, null, null); 
+            Log.v(TAG_CLASSE+TAG_METODO, "Quant. de dados consultados pelo Placa no BD: " + objCursorResultado.getCount());
+        } 
+        catch (Exception e) { 
+            Log.e(TAG_CLASSE+TAG_METODO, "Erro ao executar consulta pelo Placa no BD: " + e.getMessage());
+        }
+        return objCursorResultado;
+    }
+    
+    public int atualizarVeiculoPelaPlaca(String placa,String newPlaca, String tipo) {
+        String clausulaWHERE = CAMPO_PLACA + "='" + placa+ "'"; 
+        ContentValues objContentValues = new ContentValues(); 
+        objContentValues.put(CAMPO_PLACA, newPlaca); 
+        objContentValues.put(CAMPO_TIPO, tipo);
+        return (this.objSQLiteDatabase.update(NOME_TABELA, objContentValues, clausulaWHERE, null));
+    }
 }
