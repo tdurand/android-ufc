@@ -1,4 +1,1 @@
-List of Apps:
-
-* MonetaryConversion
-* ContactList
+Apps made for the Android course of UFC in Fortaleza
