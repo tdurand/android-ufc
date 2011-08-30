@@ -135,4 +135,12 @@ public class VeiculoDAO {
         objContentValues.put(CAMPO_TIPO, tipo);
         return (this.objSQLiteDatabase.update(NOME_TABELA, objContentValues, clausulaWHERE, null));
     }
+    
+    public String[] obterNomesBDAssociados(Context objContexto) {
+        return objContexto.databaseList(); 
+    }
+    
+    public boolean excluirBDAssociado(Context objContext, String nomeBD) {
+        return objContext.deleteDatabase(nomeBD);
+    }
 }

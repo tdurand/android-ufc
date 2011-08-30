@@ -3,6 +3,7 @@ package ufc.learning.ExBasicoBD;
 import ufc.learning.ExBasicoBD.model.Veiculo;
 import ufc.learning.ExBasicoBD.model.VeiculoDAO;
 import android.app.Activity; 
+import android.content.Context;
 import android.database.Cursor; 
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class ExBasicoBDActivity extends Activity {
         this.testarConsultaPeloID(2); 
         this.testarConsultaPeloID(1); 
         this.testarConsultaPeloID(3); 
+        this.testarObterNomesBDAssociados(this);
         this.testarAtualizacaoPeloID(3, "NJM1234", "MOTO"); 
         this.testarAtualizacaoPeloID(2, "KLJ8765", "CARRO"); 
         this.testarAtualizacaoPeloID(1, "HUJ7654", "CARRO"); 
@@ -136,5 +138,12 @@ public class ExBasicoBDActivity extends Activity {
     }
     private void testarFechamentoBD() {
         Log.v(TAG_CLASSE, "Fechou BD? " + this.objVeiculoDAO.fecharBD());
+    }
+    
+    private void testarObterNomesBDAssociados(Context objContexto) {
+        String[] nomesAssociados=this.objVeiculoDAO.obterNomesBDAssociados(objContexto);
+        for (int i = 0; i < nomesAssociados.length; i++) {
+            Log.v(TAG_CLASSE, "BDAssociado :" + nomesAssociados[i]);
+        }
     }
 }
