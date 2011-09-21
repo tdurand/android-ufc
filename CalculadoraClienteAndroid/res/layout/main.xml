@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" android:layout_width="fill_parent">
+	<TableRow>
+		<TextView android:id ="@+id/tvPrimeiroNumero"
+			android:text="1o número:" />
+		<EditText android:numeric="decimal" android:id="@+id/etPrimeiroNumero" android:layout_width="70dp">
+			<requestFocus></requestFocus>
+		</EditText>
+	</TableRow>
+	<TableRow>
+		<TextView android:id = "@+id/tvSegundoNumero "
+			android:text="2o número: " />
+		<EditText android:id = "@+id/etSegundoNumero "
+			android:numeric="decimal" />
+	</TableRow>
+	<TableRow>
+		<Button android:id = "@+id/btSomar" android:text="Somar" android:onClick="somar" />
+	</TableRow>
+	<TableRow>
+		<Button android:id = "@+id/btSubstrair" android:text="Substrair" android:onClick="substrair" />
+	</TableRow>
+	<TableRow>
+		<Button android:id = "@+id/btMultiplicar" android:text="Multiplicar" android:onClick="multiplicar" />
+	</TableRow>
+	<TableRow>
+		<Button android:id = "@+id/btDividir" android:text="Dividir" android:onClick="dividir" />
+	</TableRow>
+	<TableRow>
+		<TextView android:gravity="center" android:id="@+id/tvResultado" android:visibility="invisible" />
+	</TableRow>
+</TableLayout>
