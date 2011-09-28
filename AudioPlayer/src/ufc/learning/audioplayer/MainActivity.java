@@ -21,16 +21,9 @@ public class MainActivity extends Activity implements ServiceConnection {
         
         //Start service in background
         startService(new Intent("SERVICE_AUDIOPLAYER"));
-        //Bind service to be able to manipulate it
+        //Bind service to be able to interact with it
         bindService(new Intent("SERVICE_AUDIOPLAYER"), this, Context.BIND_AUTO_CREATE);
         
-    }
-    
-    public void play(View v) {
-        audioPlayerService.play();
-    }
-    public void pause(View v) {
-        audioPlayerService.pause();
     }
 
     @Override
@@ -43,5 +36,22 @@ public class MainActivity extends Activity implements ServiceConnection {
     public void onServiceDisconnected(ComponentName name) {
         // TODO Auto-generated method stub
         
+    }
+    
+    public void play(View v) {
+        audioPlayerService.play();
+    }
+    public void pause(View v) {
+        audioPlayerService.pause();
+    }
+    
+    public void next(View v) {
+        audioPlayerService.next();
+    }
+    public void previous(View v) {
+        audioPlayerService.previous();
+    }
+    public void stop(View v) {
+        audioPlayerService.stop();
     }
 }

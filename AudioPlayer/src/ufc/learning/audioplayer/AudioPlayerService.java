@@ -29,6 +29,12 @@ public class AudioPlayerService extends Service implements IAudioPlayer {
     public IBinder onBind(Intent intent) {
         return binder;
     }
+    
+    @Override
+    public boolean onUnbind(Intent intent) {
+        //Not needed
+        return super.onUnbind(intent);
+    }
 
     @Override
     public void onDestroy() {
@@ -38,14 +44,32 @@ public class AudioPlayerService extends Service implements IAudioPlayer {
 
     @Override
     public void play() {
+        Log.i(CATEGORIA, "play()");
         audioPlayer.play();
     }
 
     @Override
     public void pause() {
+        Log.i(CATEGORIA, "pause()");
         audioPlayer.pause();
     }
-    
-    
+
+    @Override
+    public void next() {
+        Log.i(CATEGORIA, "next()");
+        audioPlayer.next();
+    }
+
+    @Override
+    public void previous() {
+        Log.i(CATEGORIA, "next()");
+        audioPlayer.previous();
+    }
+
+    @Override
+    public void stop() {
+        Log.i(CATEGORIA, "stop()");
+        audioPlayer.stop();
+    }
 
 }

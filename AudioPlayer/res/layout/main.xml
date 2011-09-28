@@ -6,4 +6,8 @@
     >
 <Button android:layout_width="wrap_content" android:text="Play" android:layout_height="wrap_content" android:id="@+id/btnPlay" android:onClick="play"></Button>
 <Button android:layout_width="wrap_content" android:text="Pause" android:layout_height="wrap_content" android:id="@+id/btnPause" android:onClick="pause"></Button>
+<Button android:layout_width="wrap_content" android:text="Next" android:layout_height="wrap_content" android:id="@+id/btnNext" android:onClick="next"></Button>
+<Button android:layout_width="wrap_content" android:text="Previous" android:layout_height="wrap_content" android:id="@+id/btnPrevious" android:onClick="previous"></Button>
+<Button android:layout_width="wrap_content" android:text="Stop" android:layout_height="wrap_content" android:id="@+id/btnStop" android:onClick="stop"></Button>
+
 </LinearLayout>
